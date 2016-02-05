@@ -19,11 +19,14 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Button;
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
 
     protected Button upperButton;
     protected EditText editText;
@@ -36,6 +39,11 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    protected Button clearButton;
+    protected Button reverseButton;
+    protected Button lowerButton;
+    protected EditText editText;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -62,6 +70,17 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
+
+        clearButton = (Button)findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(this);
+
+        reverseButton = (Button)findViewById(R.id.reverseButton);
+        reverseButton.setOnClickListener(this);
+
+        lowerButton = (Button)findViewById(R.id.lowerButton);
+        lowerButton.setOnClickListener(this);
+
+        editText = (EditText)findViewById(R.id.editText);
 
         // load the images from the resources
         //
@@ -127,6 +146,24 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             editText.setText(userText);
 
 
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.clearButton){
+                editText.setText("");
+        }else if(v.getId() == R.id.reverseButton) {
+            String orig = editText.getText().toString();
+            String updated = "";
+            for(int i = orig.length(); i > 0; i--){
+                updated = updated + orig.substring(i-1,i);
+            }
+            editText.setText(updated);
+        }else if(v.getId() == R.id.lowerButton){
+            String str = editText.getText().toString().toLowerCase();;
+            editText.setText(str);
         }
 
     }
