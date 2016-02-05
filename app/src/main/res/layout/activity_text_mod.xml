@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clear_button_text"
-            android:id="@+id/button"
+            android:id="@+id/clearButton"
             android:textSize="@dimen/button_font_size"
             android:textColor="@color/button_text_color"
             android:background="@color/button_color" />
@@ -80,10 +80,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/upper_button_text"
-            android:id="@+id/button6"
+            android:id="@+id/upperButton"
             android:textSize="@dimen/button_font_size"
             android:textColor="@color/button_text_color"
-            android:background="@color/button_color" />
+            android:background="@color/button_color"
+            android:clickable="true" />
 
         <Space
             android:layout_width="0sp"
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lower_button_text"
-            android:id="@+id/button7"
+            android:id="@+id/lowerButton"
             android:textSize="@dimen/button_font_size"
             android:textColor="@color/button_text_color"
             android:background="@color/button_color" />
@@ -108,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reverse_button_text"
-            android:id="@+id/button4"
+            android:id="@+id/reverseButton"
             android:textSize="@dimen/button_font_size"
             android:textColor="@color/button_text_color"
             android:background="@color/button_color" />

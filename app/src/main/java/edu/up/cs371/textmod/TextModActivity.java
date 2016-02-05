@@ -5,6 +5,7 @@ package edu.up.cs371.textmod;
  *
  * Allow text to be modified in simple ways with button-presses.
  */
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,7 +23,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
 
-public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
+
+
+    protected Button upperButton;
+
+
+
+
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -39,6 +47,11 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // copy name button
     private Button copyName;
 
+
+    protected Button clearButton;
+    protected Button reverseButton;
+    protected Button lowerButton;
+    protected EditText editText;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -70,6 +83,17 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
 
+        clearButton = (Button)findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(this);
+
+        reverseButton = (Button)findViewById(R.id.reverseButton);
+        reverseButton.setOnClickListener(this);
+
+        lowerButton = (Button)findViewById(R.id.lowerButton);
+        lowerButton.setOnClickListener(this);
+
+        editText = (EditText)findViewById(R.id.editText);
+
         // load the images from the resources
         //
         // create the arraylist to hold the images
@@ -84,12 +108,16 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
+
+            upperButton =(Button) findViewById(R.id.upperButton);
+            upperButton.setOnClickListener(this);
+            editText =(EditText) findViewById(R.id.editText);
+
+
         }
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
-
-        editText = (EditText)findViewById(R.id.editText);
 
     }
 
@@ -119,6 +147,32 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.clearButton){
+                editText.setText("");
+        }else if(v.getId() == R.id.reverseButton) {
+            String orig = editText.getText().toString();
+            String updated = "";
+            for(int i = orig.length(); i > 0; i--){
+                updated = updated + orig.substring(i-1,i);
+            }
+            editText.setText(updated);
+        }else if(v.getId() == R.id.lowerButton){
+            String str = editText.getText().toString().toLowerCase();;
+            editText.setText(str);
+        } else if( v == upperButton) {
+
+            String userText = editText.getText().toString();
+            userText = userText.toUpperCase();
+            editText.setText(userText);
+        }
+
     }
 
     @Override
