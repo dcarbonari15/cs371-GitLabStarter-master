@@ -38,9 +38,6 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
-    // the text field at top
-    private EditText editText;
-
     // spinner in bottom
     private Spinner spinner;
 
@@ -171,15 +168,10 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             String userText = editText.getText().toString();
             userText = userText.toUpperCase();
             editText.setText(userText);
-        }
-
-    }
-
-    @Override
-    public void onClick(View v){
-        if (v.getId() == R.id.copyName){
+        } else if (v.getId() == R.id.copyName){
             editText.setText(editText.getText() + spinner.getSelectedItem().toString());
         }
+
     }
 
     /**
