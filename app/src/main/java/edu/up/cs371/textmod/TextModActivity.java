@@ -19,17 +19,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Button;
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
-public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
+
 
     protected Button upperButton;
-    protected EditText editText;
+
 
 
 
@@ -137,21 +135,11 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        if( v == upperButton){
 
-          String userText = editText.getText().toString();
-            userText = userText.toUpperCase();
-            editText.setText(userText);
-
-
-        }
-
-    }
 
     @Override
     public void onClick(View v) {
+
         if(v.getId() == R.id.clearButton){
                 editText.setText("");
         }else if(v.getId() == R.id.reverseButton) {
@@ -164,6 +152,11 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         }else if(v.getId() == R.id.lowerButton){
             String str = editText.getText().toString().toLowerCase();;
             editText.setText(str);
+        } else if( v == upperButton) {
+
+            String userText = editText.getText().toString();
+            userText = userText.toUpperCase();
+            editText.setText(userText);
         }
 
     }
