@@ -16,17 +16,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
 
-public class TextModActivity extends ActionBarActivity {
+public class TextModActivity extends ActionBarActivity implements View.OnClickListener{
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    // the text field at top
+    private EditText editText;
+
+    // spinner in bottom
+    private Spinner spinner;
+
+    // copy name button
+    private Button copyName;
+
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -41,10 +53,14 @@ public class TextModActivity extends ActionBarActivity {
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
 
+        copyName = (Button)findViewById(R.id.copyName);
+
+        copyName.setOnClickListener(this);
+
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = (Spinner)findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -72,6 +88,8 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+
+        editText = (EditText)findViewById(R.id.editText);
 
     }
 
@@ -101,6 +119,13 @@ public class TextModActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v){
+        if (v.getId() == R.id.copyName){
+            editText.setText(editText.getText() + spinner.getSelectedItem().toString());
+        }
     }
 
     /**
