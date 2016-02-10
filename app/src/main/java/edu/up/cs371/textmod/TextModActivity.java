@@ -54,6 +54,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected EditText editText;
     protected Button randomInsert;
     protected Button randomSwapButton;
+    protected Button removeSpaceButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -100,6 +101,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         randomSwapButton = (Button)findViewById(R.id.RandomSwapButton);
         randomSwapButton.setOnClickListener(this);
+
+        removeSpaceButton = (Button)findViewById(R.id.removeSpaceButton);
+        removeSpaceButton.setOnClickListener(this);
 
         editText = (EditText)findViewById(R.id.editText);
 
