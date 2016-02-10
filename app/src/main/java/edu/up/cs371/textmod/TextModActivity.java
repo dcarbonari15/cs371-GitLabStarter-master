@@ -50,6 +50,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Button reverseButton;
     protected Button lowerButton;
     protected EditText editText;
+    protected Button removeSpaceButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -89,6 +90,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         lowerButton = (Button)findViewById(R.id.lowerButton);
         lowerButton.setOnClickListener(this);
+
+        removeSpaceButton = (Button)findViewById(R.id.removeSpaceButton);
+        removeSpaceButton.setOnClickListener(this);
 
         editText = (EditText)findViewById(R.id.editText);
 
@@ -171,6 +175,18 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             editText.setText(userText);
         }else if (v.getId() == R.id.copyName){
             editText.setText(editText.getText() + spinner.getSelectedItem().toString());
+        }else if (v.getId() == R.id.removeSpaceButton){
+            String str = editText.getText().toString();
+            String updated = "";
+            for(int i = 0; i < str.length(); i++){
+                String chara = str.substring(i,i+1);
+                if(chara.equals(" ")){
+                    updated = updated;
+                }else{
+                    updated = updated + str.substring(i,i+1);
+                }
+            }
+            editText.setText(updated);
         }
 
     }
