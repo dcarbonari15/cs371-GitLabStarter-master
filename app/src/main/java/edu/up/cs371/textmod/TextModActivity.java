@@ -53,6 +53,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Button lowerButton;
     protected EditText editText;
     protected Button randomInsert;
+    protected Button randomSwapButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
