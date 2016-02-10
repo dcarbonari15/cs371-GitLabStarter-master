@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,6 +51,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Button reverseButton;
     protected Button lowerButton;
     protected EditText editText;
+    protected Button randomSwapButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -89,6 +91,9 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
 
         lowerButton = (Button)findViewById(R.id.lowerButton);
         lowerButton.setOnClickListener(this);
+
+        randomSwapButton = (Button)findViewById(R.id.RandomSwapButton);
+        randomSwapButton.setOnClickListener(this);
 
         editText = (EditText)findViewById(R.id.editText);
 
@@ -152,28 +157,36 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.clearButton){
-                editText.setText("");
-        }else if(v.getId() == R.id.reverseButton) {
+        if (v.getId() == R.id.clearButton) {
+            editText.setText("");
+        } else if (v.getId() == R.id.reverseButton) {
             String orig = editText.getText().toString();
             String updated = "";
-            for(int i = orig.length(); i > 0; i--){
-                updated = updated + orig.substring(i-1,i);
+            for (int i = orig.length(); i > 0; i--) {
+                updated = updated + orig.substring(i - 1, i);
             }
             editText.setText(updated);
-        }else if(v.getId() == R.id.lowerButton){
-            String str = editText.getText().toString().toLowerCase();;
+        } else if (v.getId() == R.id.lowerButton) {
+            String str = editText.getText().toString().toLowerCase();
+            ;
             editText.setText(str);
-        } else if( v == upperButton) {
+        } else if (v == upperButton) {
 
             String userText = editText.getText().toString();
             userText = userText.toUpperCase();
             editText.setText(userText);
-        }else if (v.getId() == R.id.copyName){
+        } else if (v.getId() == R.id.copyName) {
             editText.setText(editText.getText() + spinner.getSelectedItem().toString());
+        } else if (v.getId() == R.id.RandomSwapButton) {
+            String old = editText.getText().toString();
+            int swapLocal = (int) (editText.length() * Math.random());
+            String front = old.substring(0,swapLocal);
+            String back = old.substring(swapLocal, old.length());
+            editText.setText(back + front);
         }
-
     }
+
+
 
    /*
      * class that handles our spinner's selection events
