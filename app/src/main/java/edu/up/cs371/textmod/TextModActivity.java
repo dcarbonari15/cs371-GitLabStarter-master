@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TextModActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -51,6 +52,7 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
     protected Button reverseButton;
     protected Button lowerButton;
     protected EditText editText;
+    protected Button randomInsert;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -68,6 +70,10 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
         copyName = (Button)findViewById(R.id.copyName);
 
         copyName.setOnClickListener(this);
+
+        randomInsert = (Button)findViewById(R.id.randomInsert);
+
+        randomInsert.setOnClickListener(this);
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
@@ -194,6 +200,13 @@ public class TextModActivity extends ActionBarActivity implements View.OnClickLi
             String front = old.substring(0,swapLocal);
             String back = old.substring(swapLocal, old.length());
             editText.setText(back + front);
+        } else if (v.getId() == R.id.randomInsert){
+            String str = editText.getText().toString();
+            int insertLoc = (int)(editText.getText().length() * Math.random());
+            Random rand = new Random();
+            String printableChars = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP[]|ASDFGHJKL:\"zxcvbnm<>?";
+            char insertChar = printableChars.charAt(rand.nextInt(printableChars.length()));
+            editText.setText(str.substring(0,insertLoc) + insertChar + str.substring(insertLoc,editText.getText().toString().length()));
         }
     }
 
